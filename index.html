@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xmas Helper</title>
+<meta name="description" content="Free instructions you paste into ChatGPT. It asks your grown kids what they actually want, then tells you exactly what to buy and where to get it.">
+<meta property="og:title" content="Xmas Helper">
+<meta property="og:description" content="For moms whose kids moved out and stopped telling you what they want. Free, no sign up.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbf7f0;
+    --card: #ffffff;
+    --ink: #1f1d1a;
+    --muted: #5d574f;
+    --pine: #1f4d3a;
+    --pine-dark: #163a2b;
+    --berry: #b3263a;
+    --line: #e7dfd2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.55 Inter, system-ui, -apple-system, sans-serif;
+  }
+  main { max-width: 640px; margin: 0 auto; padding: 32px 16px 56px; }
+  h1 {
+    font-family: Fraunces, Georgia, serif;
+    font-size: 44px;
+    line-height: 1.05;
+    margin: 0 0 10px;
+    color: var(--pine);
+  }
+  h1 span { color: var(--berry); }
+  .sub { font-size: 19px; color: var(--muted); margin: 0 0 24px; }
+  h2 { font-family: Fraunces, Georgia, serif; font-size: 24px; margin: 32px 0 12px; color: var(--pine); }
+  p { margin: 0 0 14px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 20px;
+  }
+  ol { margin: 0; padding-left: 22px; }
+  ol li { margin: 0 0 10px; }
+  ol li:last-child { margin-bottom: 0; }
+  .copy-wrap { position: sticky; bottom: 12px; margin-top: 24px; z-index: 2; }
+  button.copy {
+    width: 100%;
+    border: 0;
+    border-radius: 14px;
+    padding: 18px 20px;
+    background: var(--pine);
+    color: #fff;
+    font: 600 19px/1.2 Inter, system-ui, sans-serif;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(31, 77, 58, 0.25);
+  }
+  button.copy:hover { background: var(--pine-dark); }
+  button.copy.done { background: var(--berry); }
+  .after { display: none; text-align: center; margin: 12px 0 0; }
+  .after.show { display: block; }
+  .after a {
+    display: inline-block;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 2px solid var(--pine);
+    color: var(--pine);
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--card);
+  }
+  details { margin-top: 16px; }
+  summary { cursor: pointer; color: var(--pine); font-weight: 600; }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+    background: #f4efe6;
+    border-radius: 12px;
+    padding: 16px;
+    max-height: 420px;
+    overflow: auto;
+    margin: 12px 0 0;
+  }
+  .note { font-size: 15px; color: var(--muted); }
+  footer { margin-top: 40px; font-size: 14px; color: var(--muted); text-align: center; }
+  @media (max-width: 420px) { h1 { font-size: 38px; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Xmas <span>Helper</span></h1>
+  <p class="sub">For moms whose kids moved out and stopped telling you what they want.</p>
+
+  <div class="card">
+    <p>You paste one set of instructions into ChatGPT. It asks you about each kid, then writes a short message you text to them. They paste it into their own ChatGPT, it figures out what they actually want (sizes too), and they text the list back.</p>
+    <p style="margin:0">You paste their lists in and get exactly what to buy, where to get it near you, and about what it costs, all inside your budget.</p>
+  </div>
+
+  <h2>How to use it</h2>
+  <div class="card">
+    <ol>
+      <li>Tap the green button below to copy the instructions.</li>
+      <li>Open ChatGPT (Gemini or Claude work too), start a new chat, paste, and hit send.</li>
+      <li>Answer its questions. Type, or tap the mic and just talk.</li>
+      <li>It gives you a message for each kid. Text it to them.</li>
+      <li>When they text their lists back, paste them into that same chat. Don't delete it.</li>
+    </ol>
+  </div>
+
+  <div class="copy-wrap">
+    <button class="copy" id="copy" type="button">Copy the instructions</button>
+  </div>
+  <p class="after" id="after"><a href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a></p>
+
+  <details>
+    <summary>See what you're copying</summary>
+    <pre id="prompt">Loading...</pre>
+  </details>
+
+  <h2>Good to know</h2>
+  <div class="card">
+    <p>Your budget, what you already bought, and your own ideas stay out of your kids' messages. Still skim each one before you send it.</p>
+    <p>Lost the chat? Start a new one, paste the instructions again, and paste your kids' lists right under them.</p>
+    <p>Free ChatGPT works. If your AI can search the web, you get real prices and stores. Prices and stock change, so check the store's app before you drive over.</p>
+    <p style="margin:0">First names and a city or zip code are all it needs. No sign up, nothing to install.</p>
+  </div>
+
+  <footer>Xmas Helper is free. Share it with another mom who needs it.</footer>
+</main>
+<script>
+  var promptText = "";
+  var btn = document.getElementById("copy");
+  var pre = document.getElementById("prompt");
+  var after = document.getElementById("after");
+
+  fetch("prompt.txt")
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function (t) { promptText = t; pre.textContent = t; })
+    .catch(function () {
+      pre.innerHTML = 'Couldn\'t load it here. <a href="prompt.txt">Open the instructions</a> and copy them from there.';
+    });
+
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  function showDone() {
+    btn.textContent = "Copied. Now paste it into ChatGPT";
+    btn.classList.add("done");
+    after.classList.add("show");
+  }
+
+  btn.addEventListener("click", function () {
+    if (!promptText) { pre.parentElement.open = true; return; }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(promptText).then(showDone, function () {
+        if (fallbackCopy(promptText)) showDone();
+      });
+    } else if (fallbackCopy(promptText)) {
+      showDone();
+    }
+  });
+</script>
+</body>
+</html>
